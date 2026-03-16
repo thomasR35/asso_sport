@@ -1,0 +1,9 @@
+// ============================================
+//  Card — Conteneur visuel standard
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.card {
+  @include card-base;
+}

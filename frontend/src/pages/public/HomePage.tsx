@@ -1,7 +1,5 @@
 // ─────────────────────────────────────────────
-//  Page d'accueil publique
-//  Sémantique : <main> > <section> distinctes
-//  Logique : aucune — que de l'affichage
+//  Page d'accueil — styles dans pages/_home.scss
 // ─────────────────────────────────────────────
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Users, Trophy, CalendarDays, Zap } from 'lucide-react';
@@ -37,7 +35,6 @@ export function HomePage() {
 
   return (
     <>
-      {/* ── Section héro ── */}
       <section className="hero" aria-labelledby="hero-title">
         <div className="hero__bg" aria-hidden="true">
           <div className="hero__grid" />
@@ -47,7 +44,7 @@ export function HomePage() {
         </div>
 
         <div className="hero__content">
-          <p className="hero__badge" aria-label="Association sportive depuis 2016">
+          <p className="hero__badge">
             <Zap size={12} fill="currentColor" aria-hidden="true" />
             Association sportive depuis 2016
           </p>
@@ -75,21 +72,17 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ── Section statistiques ── */}
-      <section className="stats-section" aria-label="Chiffres clés de l'association">
+      <section className="stats-section" aria-label="Chiffres clés">
         <ul className="stats-list" role="list">
           {STATS.map((stat) => (
             <li key={stat.label} className="stats-item">
-              <strong className="stats-item__value" aria-label={`${stat.value} ${stat.label}`}>
-                {stat.value}
-              </strong>
-              <span className="stats-item__label">{stat.label}</span>
+              <strong className="stats-item__value">{stat.value}</strong>
+              <span  className="stats-item__label">{stat.label}</span>
             </li>
           ))}
         </ul>
       </section>
 
-      {/* ── Section avantages ── */}
       <section className="features-section" aria-labelledby="features-title">
         <div className="features-section__inner">
           <header className="features-section__header">
@@ -111,7 +104,6 @@ export function HomePage() {
         </div>
       </section>
 
-      {/* ── Bandeau appel à l'action ── */}
       <section className="cta-section" aria-labelledby="cta-title">
         <div className="cta-section__bg" aria-hidden="true" />
         <div className="cta-section__inner">
@@ -124,165 +116,6 @@ export function HomePage() {
           </Button>
         </div>
       </section>
-
-      <style>{`
-        /* ── Héro ── */
-        .hero {
-          position: relative; min-height: calc(100vh - 64px);
-          display: flex; align-items: center; overflow: hidden;
-        }
-        .hero__bg { position: absolute; inset: 0; pointer-events: none; }
-        .hero__grid {
-          position: absolute; inset: 0;
-          background-image:
-            linear-gradient(rgba(255,106,0,0.04) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,106,0,0.04) 1px, transparent 1px);
-          background-size: 60px 60px;
-        }
-        .hero__glow {
-          position: absolute; top: -200px; right: -200px;
-          width: 700px; height: 700px; border-radius: 50%;
-          background: radial-gradient(circle, rgba(255,106,0,0.12) 0%, transparent 70%);
-        }
-        .hero__stripe {
-          position: absolute; height: 3px; width: 40%;
-          background: linear-gradient(90deg, transparent, var(--color-primary), transparent);
-          opacity: 0.5;
-        }
-        .hero__stripe--top    { top: 30%;    left: 0;  transform: skewY(-3deg); }
-        .hero__stripe--bottom { bottom: 30%; right: 0; transform: skewY(-3deg); }
-
-        .hero__content {
-          max-width: 1200px; margin: 0 auto; padding: 80px 24px;
-          position: relative; z-index: 1;
-          animation: fadeInUp 0.7s ease both;
-        }
-        .hero__badge {
-          display: inline-flex; align-items: center; gap: 6px;
-          padding: 6px 14px; border-radius: 999px;
-          background: rgba(255,106,0,0.12); border: 1px solid rgba(255,106,0,0.3);
-          color: var(--color-primary);
-          font-family: var(--font-display); font-weight: 700; font-size: 0.75rem;
-          letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 28px;
-        }
-        .hero__title {
-          font-family: var(--font-display); font-weight: 900;
-          font-size: clamp(2rem, 9vw, 7rem); line-height: 0.95;
-          letter-spacing: -0.01em; text-transform: uppercase;
-          color: var(--color-text); margin-bottom: 28px;
-        }
-        .hero__title span { color: var(--color-primary); }
-        .hero__description {
-          font-size: 1.1rem; color: var(--color-text-muted);
-          max-width: 520px; line-height: 1.7; margin-bottom: 40px;
-        }
-        .hero__actions { display: flex; gap: 16px; flex-wrap: wrap; }
-
-        /* ── Stats ── */
-        .stats-section {
-          background: var(--color-bg-2);
-          border-top: 1px solid var(--color-border);
-          border-bottom: 1px solid var(--color-border);
-        }
-        .stats-list {
-          max-width: 1200px; margin: 0 auto; padding: 48px 24px;
-          display: grid; grid-template-columns: repeat(4, 1fr);
-          list-style: none;
-        }
-        .stats-item {
-          display: flex; flex-direction: column; align-items: center; gap: 6px;
-          padding: 16px; position: relative;
-          animation: fadeInUp 0.5s ease both;
-        }
-        .stats-item + .stats-item::before {
-          content: ''; position: absolute; left: 0; top: 20%; height: 60%;
-          width: 1px; background: var(--color-border);
-        }
-        .stats-item__value {
-          font-family: var(--font-display); font-weight: 900;
-          font-size: 2.8rem; color: var(--color-primary); line-height: 1;
-        }
-        .stats-item__label {
-          font-family: var(--font-display); font-weight: 700; font-size: 0.78rem;
-          letter-spacing: 0.08em; text-transform: uppercase; color: var(--color-text-muted);
-        }
-
-        /* ── Avantages ── */
-        .features-section { padding: 96px 24px; }
-        .features-section__inner { max-width: 1200px; margin: 0 auto; }
-        .features-section__header { text-align: center; margin-bottom: 56px; }
-        .section-tag {
-          display: inline-block;
-          font-family: var(--font-display); font-weight: 700; font-size: 0.72rem;
-          letter-spacing: 0.1em; text-transform: uppercase; color: var(--color-primary);
-          margin-bottom: 12px;
-        }
-        .section-title {
-          font-family: var(--font-display); font-weight: 900; font-size: 2.5rem;
-          text-transform: uppercase; letter-spacing: 0.02em;
-        }
-        .features-grid {
-          display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px;
-          list-style: none; padding: 0; margin: 0;
-        }
-        .feature-card {
-          background: var(--color-bg-card); border: 1px solid var(--color-border);
-          border-radius: var(--radius-lg); padding: 32px;
-          transition: all var(--transition-base);
-          animation: fadeInUp 0.5s ease both;
-        }
-        .feature-card:hover {
-          border-color: rgba(255,106,0,0.3);
-          transform: translateY(-4px);
-          box-shadow: var(--shadow-glow);
-        }
-        .feature-card__icon {
-          width: 48px; height: 48px; border-radius: var(--radius-md);
-          background: rgba(255,106,0,0.12); color: var(--color-primary);
-          display: flex; align-items: center; justify-content: center;
-          margin-bottom: 20px;
-        }
-        .feature-card__title {
-          font-family: var(--font-display); font-weight: 800; font-size: 1.1rem;
-          text-transform: uppercase; letter-spacing: 0.04em; margin-bottom: 10px;
-        }
-        .feature-card__description { color: var(--color-text-muted); font-size: 0.92rem; line-height: 1.6; }
-
-        /* ── CTA ── */
-        .cta-section {
-          background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dim) 100%);
-          position: relative; overflow: hidden;
-        }
-        .cta-section__bg {
-          position: absolute; inset: 0;
-          background-image:
-            linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
-            linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
-          background-size: 40px 40px;
-        }
-        .cta-section__inner {
-          max-width: 1200px; margin: 0 auto; padding: 64px 24px;
-          display: flex; align-items: center; justify-content: space-between;
-          gap: 32px; position: relative; z-index: 1; flex-wrap: wrap;
-        }
-        .cta-section__text h2 {
-          font-family: var(--font-display); font-weight: 900; font-size: 2rem;
-          text-transform: uppercase; color: #fff; margin-bottom: 8px;
-        }
-        .cta-section__text p { color: rgba(255,255,255,0.8); font-size: 1rem; }
-        .cta-section .btn--primary { background: #fff; color: var(--color-primary); }
-        .cta-section .btn--primary:hover { background: #f5f5f5; }
-
-        @media (max-width: 900px) {
-          .stats-list      { grid-template-columns: repeat(2, 1fr); }
-          .features-grid   { grid-template-columns: 1fr; }
-          .cta-section__inner { flex-direction: column; text-align: center; }
-        }
-        @media (max-width: 480px) {
-          .stats-list    { grid-template-columns: repeat(2, 1fr); }
-          .hero__actions { flex-direction: column; }
-        }
-      `}</style>
     </>
   );
 }

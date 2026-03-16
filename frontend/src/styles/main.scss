@@ -1,0 +1,51 @@
+// ============================================
+//  main.scss — Point d'entrée unique SCSS
+//
+//  ORDRE D'IMPORT CRITIQUE :
+//  1. abstracts  → variables, mixins, fonctions
+//                  (aucun CSS généré)
+//  2. base       → reset, typo, animations
+//  3. themes     → CSS custom properties (:root)
+//  4. layout     → structures de page
+//  5. components → blocs UI réutilisables
+//  6. pages      → styles spécifiques aux pages
+//  7. vendors    → surcharges de librairies
+// ============================================
+
+// ── 1. Abstracts (pas de CSS généré) ─────────
+@use 'abstracts/variables';
+@use 'abstracts/functions';
+@use 'abstracts/mixins';
+
+// ── 2. Base ───────────────────────────────────
+@use 'base/reset';
+@use 'base/typography';
+@use 'base/animations';
+
+// ── 3. Thème ──────────────────────────────────
+@use 'themes/dark';
+
+// ── 4. Layout ─────────────────────────────────
+@use 'layout/public-layout';
+@use 'layout/navbar';
+@use 'layout/footer';
+@use 'layout/member-layout';
+
+// ── 5. Composants ─────────────────────────────
+@use 'components/button';
+@use 'components/input';
+@use 'components/badge';
+@use 'components/card';
+@use 'components/alert';
+@use 'components/calendar';
+
+// ── 6. Pages ──────────────────────────────────
+@use 'pages/home';
+@use 'pages/auth';
+@use 'pages/dashboard';
+@use 'pages/profile';
+@use 'pages/settings';
+@use 'pages/notfound';
+
+// ── 7. Vendors ────────────────────────────────
+@use 'vendors/fullcalendar';

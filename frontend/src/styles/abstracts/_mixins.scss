@@ -1,0 +1,135 @@
+// ============================================
+//  Mixins SCSS — Utilitaires réutilisables
+// ============================================
+@use 'variables' as *;
+
+// ── Responsive — respond-to('mobile') ────────
+// Usage : @include respond-to('mobile') { font-size: 1rem; }
+@mixin respond-to($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value == null {
+    @warn "Breakpoint `#{$breakpoint}` introuvable dans $breakpoints.";
+  } @else {
+    @media (max-width: $value) {
+      @content;
+    }
+  }
+}
+
+// Variante min-width (au-dessus d'un breakpoint)
+@mixin respond-above($breakpoint) {
+  $value: map-get($breakpoints, $breakpoint);
+
+  @if $value != null {
+    @media (min-width: ($value + 1px)) {
+      @content;
+    }
+  }
+}
+
+// ── Flexbox shortcuts ─────────────────────────
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin flex-column {
+  display: flex;
+  flex-direction: column;
+}
+
+// ── Typographie display (Barlow Condensed) ────
+@mixin font-display($weight: 700, $transform: uppercase, $spacing: 0.06em) {
+  font-family: $font-display;
+  font-weight: $weight;
+  text-transform: $transform;
+  letter-spacing: $spacing;
+}
+
+// ── Tronquer le texte sur une ligne ──────────
+@mixin truncate {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+// ── Accessible mais invisible visuellement ───
+@mixin visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+// ── Fond grille orange (effet héro) ──────────
+@mixin grid-background($opacity: 0.04) {
+  background-image:
+    linear-gradient(rgba(255, 106, 0, $opacity) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 106, 0, $opacity) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+// ── Carte standard ────────────────────────────
+@mixin card-base {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-6;
+}
+
+// ── Effet glow au survol ──────────────────────
+@mixin hover-glow {
+  transition: all $transition-base;
+
+  &:hover {
+    border-color: rgba($color-primary, 0.3);
+    transform: translateY(-4px);
+    box-shadow: $shadow-glow;
+  }
+}
+
+// ── Bouton icône (accessible) ─────────────────
+@mixin icon-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: $color-text-muted;
+  transition: color $transition-fast;
+  padding: $space-1;
+  border-radius: $radius-sm;
+
+  &:hover {
+    color: $color-text;
+  }
+}
+
+// ── Section tag (petit label orange) ─────────
+@mixin section-tag {
+  @include font-display(700, uppercase, 0.1em);
+  display: inline-block;
+  font-size: $font-size-xs;
+  color: $color-primary;
+  margin-bottom: $space-3;
+}
+
+// ── Titre de section ─────────────────────────
+@mixin section-title {
+  @include font-display(900, uppercase, 0.02em);
+  font-size: 2.5rem;
+}

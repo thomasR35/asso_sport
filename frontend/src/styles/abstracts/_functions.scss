@@ -1,0 +1,32 @@
+// ============================================
+//  Fonctions SCSS — Utilitaires de calcul
+// ============================================
+@use 'sass:math';
+
+// ── Convertir px en rem ───────────────────────
+// Usage : font-size: rem(16);  →  1rem
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+// ── Retirer l'unité d'une valeur ─────────────
+// Usage : strip-unit(16px)  →  16
+@function strip-unit($value) {
+  @return math.div($value, ($value * 0 + 1));
+}
+
+// ── Clamp fluide entre deux tailles ──────────
+// Usage : font-size: fluid-clamp(2rem, 5vw, 7rem);
+@function fluid-clamp($min, $preferred, $max) {
+  @return clamp(#{$min}, #{$preferred}, #{$max});
+}
+
+// ── Récupérer une valeur dans une map imbriquée ──
+// Usage : map-deep-get($alert-variants, 'success', 'color')
+@function map-deep-get($map, $keys...) {
+  $result: $map;
+  @each $key in $keys {
+    $result: map-get($result, $key);
+  }
+  @return $result;
+}

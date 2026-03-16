@@ -1,12 +1,12 @@
 // ─────────────────────────────────────────────
 //  main.tsx — démarrage de l'application React
-//  Ce fichier ne doit contenir que le strict
-//  minimum pour monter l'app dans le DOM.
 // ─────────────────────────────────────────────
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import './index.css';
-import './responsive.css';
+
+// Un seul import CSS — main.scss orchestre tout
+import './styles/main.scss';
+
 import { App } from './App';
 
 const rootElement = document.getElementById('root');

@@ -1,0 +1,76 @@
+// ============================================
+//  Page — 404 Not Found
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.notfound {
+  min-height: calc(100vh - #{$navbar-height});
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px $space-6;
+  position: relative;
+  overflow: hidden;
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    animation: fadeInUp 0.4s ease both;
+  }
+
+  &__icon {
+    width: 64px;
+    height: 64px;
+    background: rgba(255, 106, 0, 0.12);
+    border: 1px solid rgba(255, 106, 0, 0.3);
+    border-radius: $radius-lg;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-primary;
+  }
+
+  &__code {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 8rem;
+    line-height: 1;
+    color: $color-primary;
+    letter-spacing: -0.04em;
+
+    @include respond-to('mobile') {
+      font-size: 5rem;
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.04em;
+  }
+
+  &__description {
+    color: $color-text-muted;
+    max-width: 360px;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 12px;
+
+    @include respond-to('mobile-sm') {
+      flex-direction: column;
+      width: 100%;
+
+      .btn { width: 100%; justify-content: center; }
+    }
+  }
+}

@@ -1,0 +1,201 @@
+// ============================================
+//  Page — Dashboard membre
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.dashboard {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+
+  &__header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    flex-wrap: wrap;
+    gap: 16px;
+    animation: fadeInUp 0.4s ease both;
+
+    @include respond-to('mobile') {
+      flex-direction: column;
+      align-items: flex-start;
+
+      .btn {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+
+  &__greeting {
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: 0.9rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+    margin-bottom: 4px;
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 2.2rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1;
+    margin-bottom: 6px;
+    word-break: break-word;
+
+    @include respond-to('mobile') {
+      font-size: 1.7rem;
+    }
+
+    @include respond-to('mobile-sm') {
+      font-size: 1.4rem;
+    }
+  }
+
+  &__since {
+    font-size: 0.85rem;
+    color: $color-text-muted;
+  }
+}
+
+// ── Grille de statistiques ────────────────────
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  animation: fadeInUp 0.4s ease 0.1s both;
+
+  @include respond-to('laptop') {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  @include respond-to('mobile') {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+
+  @include respond-to('mobile-sm') {
+    grid-template-columns: 1fr;
+  }
+}
+
+.stat-card {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: $space-5;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  transition: border-color $transition-fast;
+
+  &:hover { border-color: $color-border-hover; }
+
+  @include respond-to('mobile') {
+    padding: $space-4 14px;
+  }
+
+  @include respond-to('mobile-sm') {
+    padding: 14px;
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  &__value {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.6rem;
+    line-height: 1;
+
+    @include respond-to('mobile-sm') {
+      font-size: 1.3rem;
+    }
+  }
+
+  &__label {
+    font-size: 0.78rem;
+    color: $color-text-muted;
+    margin-top: 2px;
+  }
+}
+
+// ── Liste des événements ──────────────────────
+.events-list {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.event-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 12px;
+  border-radius: $radius-md;
+  transition: background $transition-fast;
+
+  &:hover { background: $color-bg-elevated; }
+
+  &__color {
+    width: 3px;
+    height: 40px;
+    border-radius: 2px;
+    flex-shrink: 0;
+  }
+
+  &__body {
+    flex: 1;
+    min-width: 0;
+  }
+
+  &__top {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 4px;
+  }
+
+  &__title {
+    font-weight: 600;
+    font-size: 0.92rem;
+    @include truncate;
+    word-break: break-word;
+  }
+
+  &__meta {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    color: $color-text-muted;
+    font-size: 0.78rem;
+
+    span {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    @include respond-to('mobile-sm') {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 2px;
+    }
+  }
+}

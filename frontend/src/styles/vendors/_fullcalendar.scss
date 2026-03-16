@@ -1,0 +1,25 @@
+// ============================================
+//  Vendors — FullCalendar
+//  Les overrides principaux sont dans
+//  components/_calendar.scss.
+//  Ce fichier gère les corrections globales
+//  de rendu qui ne dépendent pas du composant.
+// ============================================
+@use '../abstracts/variables' as *;
+
+// Forcer le fond transparent sur tous les conteneurs FC
+.fc-theme-standard {
+  .fc-scrollgrid,
+  .fc-scrollgrid-section > td,
+  .fc-daygrid-body,
+  .fc-timegrid-body {
+    background: transparent;
+  }
+}
+
+// Correction hauteur minimum sur mobile
+@media (max-width: 480px) {
+  .fc .fc-view-harness {
+    min-height: 300px;
+  }
+}

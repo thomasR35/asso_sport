@@ -1,0 +1,14 @@
+// ============================================
+//  Layout — Pages publiques
+// ============================================
+@use '../abstracts/variables' as *;
+
+.public-layout {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+#main-content {
+  flex: 1;
+}

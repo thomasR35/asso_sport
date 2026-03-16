@@ -1,0 +1,248 @@
+// ============================================
+//  Calendrier — FullCalendar + Modal événement
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+// ── Page calendrier ───────────────────────────
+.calendar-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.calendar-wrap {
+  background: $color-bg-card;
+  border: 1px solid $color-border;
+  border-radius: $radius-lg;
+  padding: 24px;
+  box-shadow: $shadow-card;
+}
+
+// ── Légende ───────────────────────────────────
+.legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+
+  &__item {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: $font-size-xs;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: $color-text-muted;
+  }
+
+  &__dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+}
+
+// ── Modal événement ───────────────────────────
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: $z-modal;
+  background: rgba(0, 0, 0, 0.7);
+  backdrop-filter: blur(4px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+  animation: fadeIn 0.15s ease;
+}
+
+.event-modal {
+  width: 100%;
+  max-width: 480px;
+  border: 1px solid $color-border;
+  background: $color-bg-card;
+  border-radius: $radius-xl;
+  padding: 32px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  position: relative;
+  box-shadow: $shadow-elevated;
+  animation: fadeInUp 0.2s ease both;
+  max-height: 90vh;
+  overflow-y: auto;
+  color: $color-text;
+
+  &__close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: $color-bg-elevated;
+    border: 1px solid $color-border;
+    border-radius: $radius-sm;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: $color-text-muted;
+    cursor: pointer;
+    transition: all $transition-fast;
+
+    &:hover {
+      color: $color-text;
+      border-color: $color-border-hover;
+    }
+  }
+
+  &__badges {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    line-height: 1.1;
+  }
+
+  &__meta {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+
+    dd {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: $color-text-muted;
+      font-size: 0.88rem;
+      margin: 0;
+    }
+  }
+
+  &__description {
+    color: $color-text-muted;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    padding-top: 4px;
+    border-top: 1px solid $color-border;
+  }
+}
+
+// ── FullCalendar — surcharge du thème ─────────
+.fc {
+  --fc-border-color:              #{$color-border};
+  --fc-button-bg-color:           #{$color-bg-elevated};
+  --fc-button-border-color:       #{$color-border};
+  --fc-button-hover-bg-color:     #{$color-primary};
+  --fc-button-hover-border-color: #{$color-primary};
+  --fc-button-active-bg-color:    #{$color-primary-dim};
+  --fc-button-text-color:         #{$color-text};
+  --fc-today-bg-color:            rgba(255, 106, 0, 0.08);
+  --fc-event-bg-color:            #{$color-primary};
+  --fc-event-border-color:        #{$color-primary};
+  --fc-event-text-color:          #fff;
+  --fc-page-bg-color:             transparent;
+
+  font-family: $font-body;
+  color: $color-text;
+
+  .fc-toolbar-title {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 1.4rem;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: $color-text;
+  }
+
+  .fc-col-header-cell-cushion,
+  .fc-daygrid-day-number {
+    color: $color-text-muted;
+    font-weight: 600;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+  }
+
+  .fc-daygrid-day.fc-day-today .fc-daygrid-day-number {
+    color: $color-primary;
+    font-weight: 800;
+  }
+
+  .fc-button {
+    font-family: $font-display;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    padding: 6px 14px;
+    border-radius: $radius-sm;
+    transition: all $transition-fast;
+  }
+
+  .fc-scroller {
+    overflow-x: auto !important;
+  }
+
+  .fc-view-harness {
+    min-width: 280px;
+  }
+}
+
+.fc-theme-standard td,
+.fc-theme-standard th {
+  border-color: $color-border;
+}
+
+.fc .fc-scrollgrid {
+  border-color: $color-border;
+}
+
+// ── Responsive calendrier ─────────────────────
+@include respond-to('mobile-sm') {
+  .fc {
+    .fc-toolbar {
+      flex-direction: column;
+      gap: 8px;
+      align-items: stretch !important;
+    }
+
+    .fc-toolbar-chunk {
+      display: flex;
+      justify-content: center;
+    }
+
+    .fc-toolbar-title {
+      font-size: 1.1rem !important;
+    }
+
+    .fc-button {
+      padding: 5px 10px !important;
+      font-size: 0.68rem !important;
+    }
+
+    .fc-timeGridWeek-button {
+      display: none;
+    }
+
+    .fc-daygrid-day-number {
+      font-size: 0.72rem;
+    }
+  }
+
+  .calendar-wrap {
+    padding: 12px;
+    border-radius: $radius-md;
+  }
+}

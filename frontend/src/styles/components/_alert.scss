@@ -1,0 +1,21 @@
+// ============================================
+//  Alert — Messages de retour utilisateur
+// ============================================
+@use '../abstracts/variables' as *;
+
+.alert {
+  padding: 12px 16px;
+  border-radius: $radius-md;
+  font-size: 0.9rem;
+  font-weight: 500;
+  animation: fadeIn 0.2s ease;
+
+  // Génération automatique des variantes depuis la map $alert-variants
+  @each $variant, $values in $alert-variants {
+    &--#{$variant} {
+      background: map-get($values, bg);
+      border: 1px solid map-get($values, border);
+      color: map-get($values, color);
+    }
+  }
+}

@@ -1,0 +1,63 @@
+// ============================================
+//  Thème Dark Athletic
+//  Génère les CSS custom properties depuis
+//  les variables SCSS pour permettre leur
+//  utilisation dans du CSS dynamique (inline)
+// ============================================
+@use '../abstracts/variables' as *;
+
+:root {
+  // Couleurs
+  --color-bg:            #{$color-bg};
+  --color-bg-2:          #{$color-bg-2};
+  --color-bg-card:       #{$color-bg-card};
+  --color-bg-elevated:   #{$color-bg-elevated};
+
+  --color-primary:       #{$color-primary};
+  --color-primary-dim:   #{$color-primary-dim};
+  --color-primary-glow:  #{$color-primary-glow};
+  --color-accent:        #{$color-accent};
+
+  --color-text:          #{$color-text};
+  --color-text-muted:    #{$color-text-muted};
+  --color-text-dim:      #{$color-text-dim};
+
+  --color-border:        #{$color-border};
+  --color-border-hover:  #{$color-border-hover};
+
+  --color-success:       #{$color-success};
+  --color-error:         #{$color-error};
+  --color-warning:       #{$color-warning};
+  --color-info:          #{$color-info};
+
+  // Typographie
+  --font-display:        #{$font-display};
+  --font-body:           #{$font-body};
+
+  // Espacements
+  --radius-sm:           #{$radius-sm};
+  --radius-md:           #{$radius-md};
+  --radius-lg:           #{$radius-lg};
+  --radius-xl:           #{$radius-xl};
+
+  // Ombres
+  --shadow-glow:         #{$shadow-glow};
+  --shadow-card:         #{$shadow-card};
+  --shadow-elevated:     #{$shadow-elevated};
+
+  // Transitions
+  --transition-fast:     #{$transition-fast};
+  --transition-base:     #{$transition-base};
+  --transition-slow:     #{$transition-slow};
+}
+
+// ── Grain de texture sur toute la page ───────
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: #{$z-grain};
+  opacity: 0.4;
+}

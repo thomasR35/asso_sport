@@ -1,0 +1,133 @@
+// ============================================
+//  Page — Profil membre
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.profile-page {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.profile-layout {
+  display: flex;
+  gap: 24px;
+  align-items: flex-start;
+  flex-wrap: wrap;
+
+  @include respond-to('tablet') {
+    flex-direction: column;
+  }
+}
+
+// ── Carte résumé ──────────────────────────────
+.profile-card {
+  width: 240px;
+  flex-shrink: 0;
+  @include card-base;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 10px;
+  animation: fadeInUp 0.4s ease 0.05s both;
+
+  @include respond-to('tablet') {
+    width: 100%;
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    gap: 20px;
+    padding: $space-5;
+  }
+
+  @include respond-to('mobile') {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+
+  &__avatar {
+    width: 72px;
+    height: 72px;
+    border-radius: $radius-lg;
+    margin-bottom: 6px;
+    background: $color-primary;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.5rem;
+    flex-shrink: 0;
+
+    @include respond-to('tablet') {
+      margin-bottom: 0;
+    }
+
+    @include respond-to('mobile-sm') {
+      width: 56px;
+      height: 56px;
+      font-size: 1.2rem;
+    }
+  }
+
+  &__name {
+    font-family: $font-display;
+    font-weight: 900;
+    font-size: 1.1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
+  }
+
+  &__email {
+    font-size: 0.82rem;
+    color: $color-text-muted;
+  }
+
+  &__status {
+    padding: 4px 12px;
+    border-radius: 999px;
+    background: rgba(34, 197, 94, 0.12);
+    color: $color-success;
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    font-family: $font-display;
+    font-weight: 700;
+    font-size: $font-size-xs;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+  }
+
+  &__since {
+    font-size: 0.82rem;
+    color: $color-text-muted;
+  }
+}
+
+// ── Formulaire de modification ────────────────
+.profile-form {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+
+    @include respond-to('mobile') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.section-heading {
+  font-family: $font-display;
+  font-weight: 800;
+  font-size: 1rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 24px;
+}

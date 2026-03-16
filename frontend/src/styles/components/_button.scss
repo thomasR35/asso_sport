@@ -1,0 +1,106 @@
+// ============================================
+//  Composant Button
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: $font-display;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  border-radius: $radius-md;
+  transition: all $transition-fast;
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  cursor: pointer;
+  border: none;
+  max-width: 100%;
+
+  // Effet balayage diagonal au survol
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.1),
+      transparent
+    );
+    transform: translateX(-100%) skewX(-15deg);
+    transition: transform 0.4s ease;
+  }
+
+  &:hover::after {
+    transform: translateX(300%) skewX(-15deg);
+  }
+
+  &:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+    pointer-events: none;
+  }
+
+  // ── Variantes ──────────────────────────────
+  &--primary {
+    background: $color-primary;
+    color: #fff;
+    box-shadow: 0 0 20px rgba(255, 106, 0, 0.2);
+
+    &:hover {
+      background: $color-primary-dim;
+      box-shadow: $shadow-glow;
+    }
+  }
+
+  &--secondary {
+    background: $color-bg-elevated;
+    color: $color-text;
+    border: 1px solid $color-border;
+
+    &:hover {
+      border-color: $color-primary;
+      color: $color-primary;
+    }
+  }
+
+  &--ghost {
+    background: transparent;
+    color: $color-text-muted;
+
+    &:hover {
+      color: $color-text;
+      background: $color-bg-elevated;
+    }
+  }
+
+  &--danger {
+    background: $color-error;
+    color: #fff;
+
+    &:hover {
+      background: darken(#ef4444, 8%);
+    }
+  }
+
+  // ── Tailles ────────────────────────────────
+  &--sm  { padding: 8px 16px;  font-size: 0.75rem; }
+  &--md  { padding: 12px 24px; font-size: 0.85rem; }
+  &--lg  { padding: 16px 32px; font-size: 1rem; }
+
+  &--full {
+    width: 100%;
+    justify-content: center;
+  }
+
+  // ── État loading ───────────────────────────
+  &--loading {
+    pointer-events: none;
+  }
+}

@@ -1,0 +1,96 @@
+// ============================================
+//  Page — Paramètres membre
+// ============================================
+@use '../abstracts/variables' as *;
+@use '../abstracts/mixins' as *;
+
+.settings-page {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+// ── En-tête de section ────────────────────────
+.settings-section-header {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  margin-bottom: 24px;
+
+  @include respond-to('mobile') {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  &__icon {
+    width: 44px;
+    height: 44px;
+    border-radius: $radius-md;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+
+    @include respond-to('mobile') {
+      width: 36px;
+      height: 36px;
+    }
+  }
+
+  &__title {
+    font-family: $font-display;
+    font-weight: 800;
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    margin-bottom: 4px;
+  }
+
+  &__sub {
+    color: $color-text-muted;
+    font-size: 0.88rem;
+  }
+}
+
+// ── Formulaire mot de passe ───────────────────
+.settings-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+// ── Liste des infos de sécurité ───────────────
+.security-list {
+  display: flex;
+  flex-direction: column;
+
+  &__item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid $color-border;
+
+    &:last-child { border-bottom: none; }
+
+    dt {
+      font-family: $font-display;
+      font-weight: 700;
+      font-size: 0.75rem;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: $color-text-muted;
+    }
+
+    dd {
+      font-size: 0.88rem;
+      font-weight: 500;
+      margin: 0;
+
+      &.is-verified {
+        color: $color-success;
+        font-weight: 700;
+      }
+    }
+  }
+}
