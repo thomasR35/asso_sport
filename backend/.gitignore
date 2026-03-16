@@ -1,0 +1,12 @@
+# Dépendances PHP (à installer via composer install)
+vendor/
+
+# Fichier de configuration secret — ne JAMAIS commiter
+.env
+
+# Logs applicatifs
+logs/*.log
+
+# Fichiers système
+.DS_Store
+Thumbs.db

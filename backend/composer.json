@@ -1,0 +1,23 @@
+{
+  "name": "asdynamo/backend",
+  "description": "Backend PHP MVC pour l'association sportive AS Dynamo",
+  "type": "project",
+  "require": {
+    "php": ">=8.2",
+    "firebase/php-jwt": "^6.10",
+    "phpmailer/phpmailer": "^6.9",
+    "vlucas/phpdotenv": "^5.6"
+  },
+  "autoload": {
+    "psr-4": {
+      "App\\Controllers\\": "app/Controllers/",
+      "App\\Services\\":    "app/Services/",
+      "App\\Models\\":      "app/Models/",
+      "App\\Middleware\\":  "app/Middleware/",
+      "App\\Config\\":      "config/"
+    }
+  },
+  "config": {
+    "optimize-autoloader": true
+  }
+}
