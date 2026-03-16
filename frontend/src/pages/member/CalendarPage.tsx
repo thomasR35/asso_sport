@@ -22,6 +22,8 @@ export function CalendarPage() {
   const calendarRef  = useRef<FullCalendar>(null);
   const [selected, setSelected] = useState<SportEvent | null>(null);
 
+  const isMobile = window.innerWidth < 768;
+
   const { data: events, isLoading }         = useEvents();
   const registerMutation   = useRegisterToEvent();
   const unregisterMutation = useUnregisterFromEvent();
@@ -93,7 +95,7 @@ export function CalendarPage() {
             <FullCalendar
               ref={calendarRef}
               plugins={[dayGridPlugin, timeGridPlugin, listPlugin, interactionPlugin]}
-              initialView="dayGridMonth"
+              initialView={isMobile ? 'listMonth' : 'dayGridMonth'}
               locale="fr"
               firstDay={1}
               headerToolbar={{

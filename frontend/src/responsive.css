@@ -1,0 +1,459 @@
+/* ============================================
+   responsive.css — Règles responsive globales
+   
+   Breakpoints :
+     --mobile-sm  : < 480px  (téléphone petit)
+     --mobile     : < 768px  (téléphone)
+     --tablet     : < 1024px (tablette)
+     --laptop     : < 1280px (petit laptop)
+     --wide       : > 1440px (grand écran)
+   ============================================ */
+
+/* ─────────────────────────────────────────────
+   GRAND ÉCRAN (> 1440px)
+   Limiter la largeur et améliorer l'espacement
+───────────────────────────────────────────── */
+@media (min-width: 1440px) {
+  /* Pages publiques — plus d'air autour du contenu */
+  .hero__content,
+  .stats-list,
+  .features-section__inner,
+  .cta-section__inner,
+  .footer__inner,
+  .footer__bottom {
+    max-width: 1400px;
+  }
+
+  /* Titre héro légèrement plus grand */
+  .hero__title {
+    font-size: 8rem;
+  }
+
+  /* Espace membre — contenu plus large */
+  .member-content {
+    max-width: 1300px;
+    padding: 40px 48px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   PETIT LAPTOP (< 1280px)
+───────────────────────────────────────────── */
+@media (max-width: 1280px) {
+  .member-content {
+    padding: 28px 24px;
+  }
+
+  /* Dashboard : stats en 2 colonnes */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* ─────────────────────────────────────────────
+   TABLETTE (< 1024px)
+───────────────────────────────────────────── */
+@media (max-width: 1024px) {
+  /* ── Héro ── */
+  .hero__content {
+    padding: 60px 24px;
+  }
+  .hero__title {
+    font-size: clamp(2.5rem, 7vw, 4.5rem);
+  }
+
+  /* ── Stats accueil ── */
+  .stats-list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .stats-item + .stats-item::before {
+    display: none;
+  }
+
+  /* ── Features ── */
+  .features-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ── Footer ── */
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+    padding: 40px 24px 32px;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+
+  /* ── Dashboard stats ── */
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  /* ── Profil ── */
+  .profile-layout {
+    flex-direction: column;
+  }
+  .profile-card {
+    width: 100% !important;
+    flex-direction: row;
+    text-align: left;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+  }
+  .profile-card__avatar {
+    margin-bottom: 0;
+    flex-shrink: 0;
+  }
+  .profile-card > div {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  /* ── Calendrier — passer en vue liste par défaut ── */
+  .calendar-wrap {
+    padding: 16px;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   TABLETTE PORTRAIT / MOBILE LARGE (< 768px)
+───────────────────────────────────────────── */
+@media (max-width: 768px) {
+  /* ── Navbar ── */
+  .navbar__inner {
+    padding: 0 16px;
+    gap: 12px;
+  }
+
+  /* ── Héro ── */
+  .hero__content {
+    padding: 48px 20px;
+  }
+  .hero__title {
+    font-size: clamp(2.2rem, 8vw, 3.5rem);
+    margin-bottom: 20px;
+  }
+  .hero__description {
+    font-size: 1rem;
+    margin-bottom: 28px;
+  }
+  .hero__actions {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+  .hero__actions .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Stats accueil ── */
+  .stats-list {
+    padding: 32px 20px;
+    gap: 0;
+  }
+
+  /* ── Features ── */
+  .features-section {
+    padding: 60px 20px;
+  }
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── CTA band ── */
+  .cta-section__inner {
+    flex-direction: column;
+    text-align: center;
+    padding: 48px 20px;
+    gap: 24px;
+  }
+  .cta-section__inner .btn {
+    width: 100%;
+    justify-content: center;
+  }
+
+  /* ── Footer ── */
+  .footer__inner {
+    grid-template-columns: 1fr 1fr;
+    padding: 32px 20px;
+    gap: 24px;
+  }
+  .footer__bottom {
+    flex-direction: column;
+    gap: 8px;
+    text-align: center;
+    padding: 16px 20px;
+  }
+
+  /* ── Auth cards ── */
+  .auth-page {
+    padding: 24px 16px;
+    align-items: flex-start;
+  }
+  .auth-card {
+    padding: 28px 20px;
+    border-radius: var(--radius-lg);
+    max-width: 100% !important;
+  }
+  .auth-card__title {
+    font-size: 1.6rem !important;
+  }
+
+  /* ── RegisterPage — fieldset ── */
+  .form-section {
+    padding: 16px;
+  }
+  .form-row {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Info cards (succès inscription, 404…) ── */
+  .info-card {
+    padding: 32px 20px;
+    max-width: 100%;
+  }
+
+  /* ── Dashboard ── */
+  .dashboard__header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .dashboard__header .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .dashboard__name {
+    font-size: 1.7rem !important;
+  }
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .stat-card {
+    padding: 16px 14px;
+  }
+
+  /* ── Calendrier ── */
+  .calendar-wrap {
+    padding: 12px;
+    border-radius: var(--radius-md);
+  }
+  .legend {
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+  .legend__item {
+    font-size: 0.7rem;
+  }
+
+  /* ── Profil ── */
+  .profile-card {
+    flex-direction: column;
+    text-align: center;
+    align-items: center;
+  }
+  .profile-form__row,
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+
+  /* ── Paramètres ── */
+  .settings-section-header {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .settings-section-header__icon {
+    width: 36px;
+    height: 36px;
+  }
+
+  /* ── Modal événement ── */
+  .modal-backdrop {
+    padding: 16px;
+    align-items: flex-end;
+  }
+  .event-modal {
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+    padding: 24px 20px;
+    max-height: 85vh;
+  }
+
+  /* ── Membre — contenu ── */
+  .member-content {
+    padding: 16px;
+  }
+  .page-title {
+    font-size: 1.6rem !important;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   MOBILE PETIT (< 480px)
+───────────────────────────────────────────── */
+@media (max-width: 480px) {
+  /* ── Héro ── */
+  .hero__title {
+    font-size: clamp(2rem, 10vw, 2.8rem);
+    line-height: 1;
+  }
+  .hero__badge {
+    font-size: 0.68rem;
+  }
+
+  /* ── Stats accueil — 1 colonne ── */
+  .stats-list {
+    grid-template-columns: 1fr;
+    padding: 24px 16px;
+  }
+  .stats-item {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 0;
+    border-bottom: 1px solid var(--color-border);
+  }
+  .stats-item:last-child {
+    border-bottom: none;
+  }
+  .stats-item__value {
+    font-size: 2rem;
+  }
+
+  /* ── Footer — 1 colonne ── */
+  .footer__inner {
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  /* ── Dashboard stats — 1 colonne ── */
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+  .stat-card {
+    padding: 14px;
+  }
+  .stat-card__value {
+    font-size: 1.3rem !important;
+  }
+
+  /* ── Auth ── */
+  .auth-card {
+    padding: 24px 16px;
+  }
+  .pw-strength {
+    gap: 4px;
+  }
+  .pw-strength__rule {
+    font-size: 0.68rem;
+    padding: 2px 7px;
+  }
+
+  /* ── Calendrier FullCalendar — masquer certains éléments ── */
+  .fc .fc-toolbar {
+    flex-direction: column;
+    gap: 8px;
+    align-items: stretch !important;
+  }
+  .fc .fc-toolbar-chunk {
+    display: flex;
+    justify-content: center;
+  }
+  .fc .fc-toolbar-title {
+    font-size: 1.1rem !important;
+  }
+  .fc .fc-button {
+    padding: 5px 10px !important;
+    font-size: 0.68rem !important;
+  }
+  /* Sur mobile, cacher la vue semaine et afficher liste par défaut */
+  .fc .fc-timeGridWeek-button {
+    display: none;
+  }
+  .fc .fc-daygrid-day-number {
+    font-size: 0.72rem;
+  }
+
+  /* ── Membre ── */
+  .member-content {
+    padding: 12px;
+  }
+  .dashboard__name {
+    font-size: 1.4rem !important;
+  }
+
+  /* ── Profil ── */
+  .profile-card__avatar {
+    width: 56px !important;
+    height: 56px !important;
+    font-size: 1.2rem !important;
+  }
+
+  /* ── Section header dashboard ── */
+  .section-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* ── Event row ── */
+  .event-row__meta {
+    flex-direction: column;
+    gap: 2px !important;
+  }
+
+  /* ── Boutons pleine largeur sur mobile ── */
+  .info-card .btn,
+  .notfound__content .btn {
+    width: 100%;
+    justify-content: center;
+  }
+  .notfound__content > div {
+    flex-direction: column;
+    width: 100%;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   CORRECTIONS GLOBALES TOUS FORMATS
+   Problèmes qui s'appliquent partout
+───────────────────────────────────────────── */
+
+/* Empêcher tout débordement horizontal */
+html, body, #root {
+  overflow-x: hidden;
+  max-width: 100vw;
+}
+
+/* Images et médias responsives par défaut */
+img, video, iframe {
+  max-width: 100%;
+}
+
+/* Boutons : ne jamais dépasser la largeur du parent */
+.btn {
+  max-width: 100%;
+}
+
+/* Inputs : toujours pleine largeur dans leur conteneur */
+.field__input {
+  min-width: 0;
+}
+
+/* Textes longs : couper proprement */
+.event-row__title,
+.dashboard__name,
+.profile-card__name {
+  word-break: break-word;
+}
+
+/* FullCalendar — forcer le scroll horizontal sur mobile */
+.fc-scroller {
+  overflow-x: auto !important;
+}
+.fc-view-harness {
+  min-width: 280px;
+}

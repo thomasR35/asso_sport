@@ -63,7 +63,7 @@ export function ProfilePage() {
 
         <div className="profile-layout">
           {/* ── Carte résumé ── */}
-          <aside aria-label="Résumé du profil" style={{ animation: 'fadeInUp 0.4s ease 0.05s both' }}>
+          <aside aria-label="Résumé du profil" style={{ animation: 'fadeInUp 0.4s ease 0.05s both', flexShrink: 0 }}>
             <Card className="profile-card">
               <div className="profile-card__avatar" aria-hidden="true">
                 {getInitials(profile?.firstName, profile?.lastName)}
@@ -183,7 +183,7 @@ export function ProfilePage() {
         .page-title     { font-family: var(--font-display); font-weight: 900; font-size: 2rem; text-transform: uppercase; letter-spacing: 0.02em; }
         .page-subtitle  { color: var(--color-text-muted); font-size: 0.92rem; margin-top: 4px; }
         .profile-layout { display: flex; gap: 24px; align-items: flex-start; flex-wrap: wrap; }
-        .profile-card   { width: 240px; flex-shrink: 0; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
+        .profile-card   { width: 240px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 10px; }
         .profile-card__avatar {
           width: 72px; height: 72px; border-radius: var(--radius-lg); margin-bottom: 6px;
           background: var(--color-primary); color: #fff;

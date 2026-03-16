@@ -167,7 +167,7 @@ export function HomePage() {
         }
         .hero__title {
           font-family: var(--font-display); font-weight: 900;
-          font-size: clamp(3rem, 9vw, 7rem); line-height: 0.95;
+          font-size: clamp(2rem, 9vw, 7rem); line-height: 0.95;
           letter-spacing: -0.01em; text-transform: uppercase;
           color: var(--color-text); margin-bottom: 28px;
         }

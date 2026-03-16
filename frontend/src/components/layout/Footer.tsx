@@ -114,7 +114,10 @@ export function Footer() {
           .footer__brand { grid-column: 1 / -1; }
           .footer__bottom { flex-direction: column; gap: 6px; text-align: center; }
         }
-        @media (max-width: 480px) { .footer__inner { grid-template-columns: 1fr; } }
+        @media (max-width: 480px) {
+          .footer__inner { grid-template-columns: 1fr; gap: 20px; padding: 28px 16px; }
+          .footer__nav-title { margin-bottom: 10px; }
+        }
       `}</style>
     </>
   );
