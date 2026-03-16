@@ -7,11 +7,10 @@
 //  Ce fichier ne fait que démarrer l'application.
 //  Il ne contient aucune logique métier.
 // ──────────────────────────────────────────────
-
-declare(strict_types=1);
-
 // Sécurité : on empêche l'affichage des erreurs PHP en production
 // (les erreurs sont loguées, jamais affichées à l'utilisateur)
+declare(strict_types=1);
+
 ini_set('display_errors', '0');
 ini_set('log_errors', '1');
 
@@ -30,4 +29,9 @@ require_once __DIR__ . '/../app/Middleware/CorsMiddleware.php';
 
 // Chargement du routeur
 // (il lit l'URL et appelle le bon contrôleur)
+file_put_contents(
+    __DIR__ . '/debug.log',
+    $_SERVER['REQUEST_METHOD'] . ' ' . $_SERVER['REQUEST_URI'] . PHP_EOL,
+    FILE_APPEND
+);
 require_once __DIR__ . '/../routes/api.php';

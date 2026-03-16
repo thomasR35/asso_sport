@@ -1,14 +1,17 @@
 # ──────────────────────────────────────────────
-#  Redirige toutes les requêtes vers index.php
-#  Cela permet d'avoir des URLs propres comme
-#  /api/auth/login au lieu de /index.php?route=...
+
+# Redirige toutes les requêtes vers index.php
+
+# Cela permet d'avoir des URLs propres comme
+
+# /api/auth/login au lieu de /index.php?route=...
+
 # ──────────────────────────────────────────────
 
+Options -MultiViews
 RewriteEngine On
+RewriteBase /
 
-# Si le fichier ou dossier demandé existe réellement, on le sert directement
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-
-# Sinon, tout passe par index.php
-RewriteRule ^(.*)$ index.php [QSA,L]
+RewriteRule ^ index.php [QSA,L]
